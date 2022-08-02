@@ -1,0 +1,13 @@
+(current road map of the game)
+
+high priority: 
+    balance upgrades and pacing
+    start adding content for later stages of game
+
+medium priority:
+    clean up code
+    fix minor ui graphical errors
+    make buttons in general look better
+
+low priority:
+    icons for upgrade buttons
