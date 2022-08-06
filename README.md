@@ -18,7 +18,16 @@ release of alpha v1.0.0: added functionality for first part of game, added savin
 august 1:
 fixed some minor graphical errors, fixed a LOT of bugs, added nonfunctional content for system tab, fixed all bugs i found while playtesting
 
-current functional elements:
-everything except system and galaxy overview tabs
+august 2:
+fixed a typo that caused the html head information to not load, fixed a loading error
+
+august 4:
+fixed a lot of loading bugs
+
+august 5:
+fixed more loading bugs (spaceport and spaceship), added functionality to colonizing planets, added sell partial resource buttons
+
+current nonfunctional elements:
+buildings in system tab
 
 discord (join if you want to know what i'm currently working on): https://discord.gg/6jb7PmeD7m

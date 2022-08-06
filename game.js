@@ -7,6 +7,10 @@ let researchPoints = 0;
 let planetsControlled = 1;
 let solarPanels = 0;
 
+let asteroidMiners = 0;
+let asteroidMinerSpaceLevel = 0;
+let asteroidMinerLevel = 0;
+
 let workerLevel = 0;
 const workerEfficiency = [1, 2, 4, 10, 25, 75, 200, 500, 1000]
 const workerEfficiencyCosts = [0, 100, 500, 2500, 10000, 50000, 200000, 1000000, 5000000]
@@ -32,7 +36,8 @@ const factoryEfficiencyMoneyCosts = [0, 20000, 75000, 500000, 2500000]
 const factoryEfficiencyResourceCosts = [0, 100000, 400000, 2500000, 12000000]
 let factoryToggle = false;
 
-let spaceportUnlocked = false
+let spaceportUnlocked = false;
+let spaceportBuilt = false;
 
 let solarPanelsUnlocked = false;
 let solarPanelLevel = 0;
@@ -46,6 +51,9 @@ const solarPanelSpaceCosts = [0, 12000, 40000, 150000, 800000, 2500000, 12000000
 let spaceshipBuilt = false;
 
 let resourceSellRate = 0.1;
+
+let planetsColonized = [false, false, false, false, false]
+
 
 function saveData() {
 
@@ -67,10 +75,12 @@ function saveData() {
         factoryUnlocked,
         factoryLevel,
         spaceportUnlocked,
+        spaceportBuilt,
         solarPanelsUnlocked,
         solarPanelLevel,
         solarPanelSpaceLevel,
-        spaceshipBuilt
+        spaceshipBuilt,
+        planetsColonized
     }))
     console.log(window.localStorage);
 
@@ -101,10 +111,12 @@ function loadData() {
     factoryUnlocked = save.factoryUnlocked;
     factoryLevel = save.factoryLevel;
     spaceportUnlocked = save.spaceportUnlocked;
+    spaceportBuilt = save.spaceportBuilt;
     solarPanelsUnlocked = save.solarPanelsUnlocked;
     solarPanelLevel = save.solarPanelLevel;
     solarPanelSpaceLevel = save.solarPanelSpaceLevel;
     spaceshipBuilt = save.spaceshipBuilt;
+    planetsColonized = save.planetsColonized;
 
     tick1();
 
@@ -136,6 +148,13 @@ function notEnoughRefinedResources() {
 
     //get more refined resources dipshit
     alert("You don't have enough refined resources!");
+
+}
+
+function notEnoughEnergy() {
+
+    //get more energy dipshit
+    alert("You don't have enough energy!");
 
 }
 
@@ -221,6 +240,13 @@ function upgradeManualResources() {
 
 }
 
+if (manualResourceLevel === 7) {
+
+    //hides button at max level
+    document.getElementById("upgradeResourceClickButton").style.display = "none";
+
+}
+
 function sellResources() {
 
     //sells resources
@@ -229,6 +255,20 @@ function sellResources() {
     money = Number(roundedMoney);
 
     resources = 0;
+    tick1();
+
+}
+
+function sellPartialResources(percent) {
+
+    //sells part of resources
+    money += resources * (percent / 100) * resourceSellRate;
+    let roundedMoney = money.toFixed(1);
+    money = Number(roundedMoney);
+
+    resources -= resources * (percent / 100);
+    let roundedResources = resources.toFixed(0);
+    resources = Number(roundedResources);
     tick1();
 
 }
@@ -334,15 +374,19 @@ for (let i = 0; i < collection.length; i++) {
 }
 
 if (solarPanelsUnlocked === false) {
-    document.getElementById("buildMoreSolarPanels").style.display = "none";
     document.getElementById("buildSolarPanelButton").style.display = "none";
-    document.getElementById("upgradeSolarPanelButton").style.display = "none";
-    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     document.getElementById("energyCount").style.display = "none";
     document.getElementById("solarPanelCount").style.display = "none";
 }
 
+if (solarPanels === 0) {
+    document.getElementById("buildMoreSolarPanels").style.display = "none";
+    document.getElementById("upgradeSolarPanelButton").style.display = "none";
+    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
+}
+
 if (solarPanels > 0) {
+    document.getElementById("unlockSolarPanels").style.display = "none";
     document.getElementById("buildSolarPanelButton").style.display = "none";
     const collection = document.getElementsByClassName("solarpanelupgradesheader");
     for (let i = 0; i < collection.length; i++) {
@@ -356,8 +400,52 @@ if (spaceportUnlocked === false) {
     document.getElementById("SpaceportTab").style.display = "none";
 }
 
-if (spaceshipBuilt === false) {
+if (spaceshipBuilt === true) {
     document.getElementById("constructSpaceshipButton").style.display = "none";
+}
+
+if (spaceshipBuilt === false) {
+    document.getElementById("colonizePlanet1Button").style.display = "none";
+    document.getElementById("colonizePlanet2Button").style.display = "none";
+    document.getElementById("colonizePlanet3Button").style.display = "none";
+    document.getElementById("colonizePlanet4Button").style.display = "none";
+    document.getElementById("colonizePlanet5Button").style.display = "none";
+    document.getElementById("systemOverviewTab").style.display = "none";
+}
+
+if (solarPanelsUnlocked === true) {
+
+    document.getElementById("unlockSpacePort").style.display = "inline";
+    document.getElementById("unlockSolarPanels").style.display = "none";
+
+}
+
+if (spaceportBuilt === true) {
+    document.getElementById("buildSpaceportButton").style.display = "none";
+}
+
+if (spaceportUnlocked === true) {
+    document.getElementById("unlockSpacePort").style.display = "none";
+}
+
+if (planetsColonized[0] === true) {
+    document.getElementById("colonizePlanet1Button").style.display = "none";
+}
+
+if (planetsColonized[1] === true) {
+    document.getElementById("colonizePlanet2Button").style.display = "none";
+}
+
+if (planetsColonized[2] === true) {
+    document.getElementById("colonizePlanet3Button").style.display = "none";
+}
+
+if (planetsColonized[3] === true) {
+    document.getElementById("colonizePlanet4Button").style.display = "none";
+}
+
+if (planetsColonized[5] === true) {
+    document.getElementById("colonizePlanet5Button").style.display = "none";
 }
 
 function upgradeWorkers() {
@@ -383,6 +471,12 @@ function upgradeWorkers() {
 
 }
 
+if (workerLevel === 7) {
+
+    document.getElementById("upgradeWorkerButton").style.display = "none";
+
+}
+
 function upgradeWorkerHousing() {
 
     if (money < workerHousingMoneyCosts[workerHousingLevel + 1]) {
@@ -404,6 +498,12 @@ function upgradeWorkerHousing() {
         document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
     }
+
+}
+
+if (workerHousingLevel === 8) {
+
+    document.getElementById("upgradeWorkerHousingButton").style.display = "none";
 
 }
 
@@ -453,6 +553,12 @@ function upgradeResearchCenter() {
 
     }
 
+
+}
+
+if (researchCenterLevel === 4) {
+
+    document.getElementById("upgradeResearchCenterButton").style.display = "none";
 
 }
 
@@ -522,6 +628,10 @@ function upgradeFactory() {
 
 }
 
+if (factoryLevel === 4) {
+    document.getElementById("upgradeFactoryButton").style.display = "none";
+}
+
 function researchSolarPanels() {
     if (researchPoints < 500) {
         notEnoughResearch();
@@ -530,6 +640,7 @@ function researchSolarPanels() {
         researchPoints -= 500;
         tick1();
 
+        solarPanelsUnlocked = true;
         solarPanelLevel++;
 
         document.getElementById("energyCount").style.display = "inline";
@@ -575,7 +686,7 @@ function buildSolarPanel() {
         notEnoughMoney();
     } else if (refinedResources < 100) {
         notEnoughRefinedResources();
-    } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel]) {
+    } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel] * planetsControlled) {
         alert("You don't have enough space!");
     } else {
 
@@ -612,6 +723,10 @@ function upgradeSolarPanels() {
     }
 }
 
+if (solarPanelLevel === 4) {
+    document.getElementById("upgradeSolarPanelButton").style.display = "none";
+}
+
 function upgradeSolarPanelSpace() {
 
     //upgrades solar panel space
@@ -627,6 +742,10 @@ function upgradeSolarPanelSpace() {
     if (solarPanelSpaceLevel === 6) {
         document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
     }
+}
+
+if (solarPanelSpaceLevel === 6) {
+    document.getElementById("upgradeSolarPanelSpaceButton").style.display = "none";
 }
 
 function researchSpaceport() {
@@ -656,7 +775,7 @@ function buildSpaceport() {
 
         money -= 400000;
         resources -= 1200000;
-        spaceportUnlocked = true;
+        spaceportBuilt = true;
 
         document.getElementById("buildSpaceportButton").style.display = "none";
 
@@ -690,7 +809,30 @@ function constructSpaceship() {
         notEnoughRefinedResources();
     } else {
         spaceshipBuilt = true;
-        alert("Congrats! You beat the beginning. Now come back later and hopefully bobby will have updated the game by then. - jerry the inflatable elephant");
+        alert("Congrats! You beat the beginning. there's still stuff lol but be wary of nonfunctional elements and bugs beyond this point - jerry the inflatable elephant");
+        document.getElementById("constructSpaceshipButton").style.display = "none";
+
+        document.getElementById("colonizePlanet1Button").style.display = "inline";
+        document.getElementById("colonizePlanet2Button").style.display = "inline";
+        document.getElementById("colonizePlanet3Button").style.display = "inline";
+        document.getElementById("colonizePlanet4Button").style.display = "inline";
+        document.getElementById("colonizePlanet5Button").style.display = "inline";
+        document.getElementById("systemOverviewTab").style.display = "inline";
+    }
+
+}
+
+function colonizePlanet(cost, buttonID, planetNumber) {
+
+    if (energy < cost) {
+        notEnoughEnergy();
+    } else {
+        energy -= cost;
+        document.getElementById(buttonID).style.display = "none";
+        planetsControlled++;
+        planetsColonized[planetNumber] = true;
+
+        tick1();
     }
 
 }
