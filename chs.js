@@ -368,7 +368,7 @@ var cnRegReplace = new Map([
     [/^Your worker housing level is (.+). Upgrade worker housing cost (.+) money and (.+) resources.$/, '您的工人住房等级为 $1。升级工人住房需要 $2 金钱和 $3 资源。'],
     [/^(.+) Refined\n(.+)Resources$/, '$1 精炼\n$2资源'],
     [/^Costs (.+) rocket\n                fuel.$/, '成本 $1 火箭\n 燃料。'],
-    [/^Your workers are level (.+) and each worker produces (.+) resources per second.$/, '您的工人是 $1 级，每个工人每秒生产 $ 资源。'],
+    [/^Your workers are level (.+) and each worker produces (.+) resources per second.$/, '您的工人是 $1 级，每个工人每秒生产 $2 资源。'],
     [/^Costs (.+) research.$/, '成本 $1 研究.'],
     [/^You have (.+) points$/, '你有 $1 点数'],
     [/^Next at (.+) points$/, '下一个在 $1 点数'],
