@@ -415,7 +415,7 @@ var cnRegReplace = new Map([
     [/^Cost:\n(.+)money and (.+) refined resources.$/, '成本：\n$1金钱 和 $2 精炼资源。'],
     [/^Cost:\n(.+)Money$/, '成本：\n$1金钱'],
     [/^Cost: (.+) Money$/, '成本：$1 金钱'],
-    [/^Cost: (.+) energy$/, '成本：$1 能源'],
+    [/^Cost: (.+) energy$/, '成本：$1 燃料'],
     [/^Cost: (.+) points$/, '成本：$1 点数'],
     [/^Req: (.+) elves$/, '要求：$1 精灵'],
     [/^Req: (.+) \/ (.+) elves$/, '要求：$1 \/ $2 精灵'],
