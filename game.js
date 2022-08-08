@@ -171,42 +171,42 @@ function resetData() {
 function notEnoughMoney() {
 
     //get more money dipshit
-    alert("You don't have enough money!");
+    alert("你的钱不够！");
 
 }
 
 function notEnoughFuel() {
 
     //get more fuel dipshit
-    alert("You don't have enough fuel!");
+    alert("你没有足够的燃料！");
 
 }
 
 function notEnoughResources() {
 
     //get more resources dipshit
-    alert("You don't have enough resources!");
+    alert("你没有足够的资源！");
 
 }
 
 function notEnoughRefinedResources() {
 
     //get more refined resources dipshit
-    alert("You don't have enough refined resources!");
+    alert("你没有足够的精炼资源！");
 
 }
 
 function notEnoughEnergy() {
 
     //get more energy dipshit
-    alert("You don't have enough energy!");
+    alert("你的能源不够！");
 
 }
 
 function notEnoughResearch() {
 
     //get more research dipshit
-    alert("You don't have enough research points!");
+    alert("你没有足够的研究点！");
 
 }
 
