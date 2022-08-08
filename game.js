@@ -326,7 +326,7 @@ function purchaseWorkers(amount) {
     }
 
     if ((workers + amount) > (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        alert("You need to buy more housing for your workers.");
+        alert("你需要为你的工人购买更多的住房.");
     }
 
     if ((money >= 10 * amount) && (workers + amount) <= (planetsControlled * workerHousingSpace[workerHousingLevel])) {
@@ -349,7 +349,7 @@ function purchaseMaxWorkers() {
     }
 
     if (workers === (planetsControlled * workerHousingSpace[workerHousingLevel])) {
-        alert("You need to buy more housing for your workers.");
+        alert("你需要为你的工人购买更多的住房.");
     }
 
     //buys max workers
@@ -796,7 +796,7 @@ function buildSolarPanel() {
     } else if (refinedResources < 100) {
         notEnoughRefinedResources();
     } else if (solarPanels === solarPanelSpace[solarPanelSpaceLevel] * planetsControlled) {
-        alert("You don't have enough space!");
+        alert("你没有足够的空间!");
     } else {
 
         money -= 20000;
@@ -1059,7 +1059,7 @@ function launchSpaceship() {
         rocketFuel -= 500;
         spaceshipLaunched = true;
 
-        alert("Congrats! You beat the beginning. there's still stuff lol but be wary of nonfunctional elements and bugs beyond this point - jerry the inflatable elephant");
+        alert("恭喜！ 你打败了开始。 仍然有东西，哈哈，但要警惕超出这一点的非功能性元素和错误 - 充气大象杰瑞");
 
         document.getElementById("systemOverviewTab").style.display = "inline";
         document.getElementById("launchSpaceshipButton").style.display = "none";
