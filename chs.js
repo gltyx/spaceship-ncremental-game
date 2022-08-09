@@ -109,7 +109,7 @@ var cnItems = {
     "Unlock fuel refinery": "解锁炼油厂",
     "Unlock telescope": "解锁望远镜",
     "You can manufacture more advanced resources here.": "您可以在这里制造更高级的资源。",
-    "Credits!": "学分！",
+    "Credits!": "鸣谢！",
     "Hi, I'm Bobby, a violinist in high school who's interested in computer science.": "大家好，我是 Bobby，一位对计算机科学感兴趣的高中小提琴手。",
     "Information": "信息",
     "Launch rocket!": "发射火箭！",
@@ -120,7 +120,7 @@ var cnItems = {
     "Build a telescope": "建造望远镜",
     "Build orbital telescope": "建造轨道望远镜",
     "Build space station": "建造空间站",
-    "(mostly) Made by Bobby M 2022 (check settings/information for full credits). All art assets created by me.": "（大部分）由 Bobby M 2022 制作（检查设置/信息以获得完整学分）。 我创建的所有艺术资产。",
+    "(mostly) Made by Bobby M 2022 (check settings/information for full credits). All art assets created by me.": "（大部分）由 Bobby M 2022 制作（检查设置/信息以获得完整鸣谢）。 我创建的所有艺术资产。",
     "(my badly drawn portrait)": "（我画得很糟糕的肖像）",
     "Off": "关闭",
     "On": "打开",
@@ -315,6 +315,13 @@ var cnPostfix = {
     "": "",
     "": "",
     "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
+    "": "",
 }
 
 //需排除的，正则匹配
@@ -356,6 +363,9 @@ var cnExcludePostfix = [
 var cnRegReplace = new Map([
     [/^([\d\.]+) hours ([\d\.]+) minutes ([\d\.]+) seconds$/, '$1 小时 $2 分钟 $3 秒'],
     [/^You are gaining (.+) elves per second$/, '你每秒获得 $1 精灵'],
+    [/^(.+) and it produces (.+) research points per second.$/, '$1 每秒产生 $2 研究点。'],
+    [/^(.+) and it produces (.+) refined resources per second.$/, '$1 每秒产生 $2 精炼资源。'],
+    [/^(.+) and each solar panel produces (.+) energy per second.$/, '$1 每个太阳能板每秒产生 $2 能源。'],
     [/^Sell (.+) of resources$/, '出售 $1 资源'],
     [/^Costs (.+)\n                research.$/, '成本 $1\n                研究。'],
     [/^Your workers are level (.+) and each worker produces (.+) resources per second. Upgrade worker cost (.+) money.$/, '您的工人是 $1 级，每个工人每秒生产 $2 资源。 升级工人需要 $3 金钱。'],
